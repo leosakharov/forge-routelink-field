@@ -1,37 +1,75 @@
-# Forge Hello World
+# Route Link UI Field for Jira
 
-This project contains a Forge app written in Javascript that displays "Hello, World!" in a Jira custom field.
+A Forge custom field for Jira that provides a convenient way to view a route between two addresses in Google Maps.
 
-See [developer.atlassian.com/platform/forge/](https://developer.atlassian.com/platform/forge) for documentation and tutorials explaining Forge.
+## Description
 
-## Requirements
+This custom field displays a "View Route in Google Maps" button that, when clicked, opens Google Maps in a new tab with directions between two addresses (pickup and delivery) that are stored in other custom fields within the Jira issue.
 
-See [Set up Forge](https://developer.atlassian.com/platform/forge/set-up-forge/) for instructions to get set up.
+## Features
 
-## Quick start
+- Displays a button that links directly to Google Maps
+- Automatically generates a route between pickup and delivery addresses
+- Opens the route in a new tab
+- Read-only field that doesn't allow direct editing
 
-- Modify your app frontend by editing the `src/frontend/index.jsx` and `src/frontend/edit.jsx` files.
+## Prerequisites
 
-- Build and deploy your app by running:
-```
-forge deploy
-```
+- Atlassian Forge CLI
+- Node.js 22.x
+- Jira Cloud instance with admin access
 
-- Install your app in an Atlassian site by running:
-```
-forge install
-```
+## Installation
 
-- Develop your app by running `forge tunnel` to proxy invocations locally:
-```
-forge tunnel
-```
+1. Install the Forge CLI:
+   ```
+   npm install -g @forge/cli
+   ```
 
-### Notes
-- Use the `forge deploy` command when you want to persist code changes.
-- Use the `forge install` command when you want to install the app on a new site.
-- Once the app is installed on a site, the site picks up the new app changes you deploy without needing to rerun the install command.
+2. Clone this repository:
+   ```
+   git clone <repository-url>
+   cd routelink-ui-field
+   ```
 
-## Support
+3. Install dependencies:
+   ```
+   npm install
+   ```
 
-See [Get help](https://developer.atlassian.com/platform/forge/get-help/) for how to get help and provide feedback.
+4. Deploy to your Forge app:
+   ```
+   forge deploy
+   ```
+
+5. Install the app in your Jira instance:
+   ```
+   forge install
+   ```
+
+## Configuration
+
+This custom field relies on two other custom fields in your Jira instance:
+
+- `customfield_10062`: Pickup address
+- `customfield_10063`: Delivery address
+
+You may need to update these field IDs in the code to match your Jira instance's configuration.
+
+## Usage
+
+Once installed and configured:
+
+1. Add the "Route" custom field to your Jira issue screens
+2. When viewing an issue with pickup and delivery addresses, the field will display a "View Route in Google Maps" button
+3. Click the button to open Google Maps with the route between the addresses
+
+## Dependencies
+
+- @forge/bridge: 4.5.0
+- @forge/react: 11.0.0
+- React: 18.2.0
+
+## License
+
+MIT
